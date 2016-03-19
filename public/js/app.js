@@ -1,4 +1,4 @@
-angular.module('bikeTrader', ['ngRoute', 'angular-filepicker', 'postService', 'HomeCtrl', 'PostCtrl', 'SignUpCtrl', 'LogInCtrl', 'navCtrl', 'ImageCtrl'])
+angular.module('bikeTrader', ['ngRoute', 'angular-filepicker', 'postService', 'HomeCtrl', 'PostCtrl', 'CommunityCtrl', 'SignUpCtrl', 'LogInCtrl', 'navCtrl', 'ImageCtrl'])
 .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider
     // nerds page that will use the NerdController
@@ -21,6 +21,12 @@ angular.module('bikeTrader', ['ngRoute', 'angular-filepicker', 'postService', 'H
     .when('/log-in', {
       templateUrl: 'views/login.html',
       controller: 'LogInController'
+    })
+
+//JB community route addition
+    .when('/community', {
+      templateUrl: 'views/community.html',
+      controller: 'CommunityController'
     })
 
     .when('*', {
