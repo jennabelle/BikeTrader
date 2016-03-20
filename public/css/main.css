@@ -1,5 +1,5 @@
 header {
-  background-image: url('../img/lizzieschwinn.jpg');
+  /*background-image: url('../img/lizzieschwinn.jpg');*/
   background-repeat: no-repeat;
   background-position: right center;
   background-size: contain;
@@ -24,4 +24,8 @@ header {
   border-color: black;
   border-width: 2px;
   margin: 1px;
+}
+
+#logo{
+  background-size: 10px;
 }
