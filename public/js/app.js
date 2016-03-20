@@ -1,33 +1,34 @@
-angular.module('bikeTrader', ['ngRoute', 'angular-filepicker', 'postService', 'HomeCtrl', 'PostCtrl', 'SignUpCtrl', 'LogInCtrl', 'navCtrl', 'ImageCtrl'])
-.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-  $routeProvider
-    // nerds page that will use the NerdController
-    
-    .when('/', {
-      templateUrl: 'views/home.html',
-      controller: 'HomeController'
+angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 'HomeCtrl', 'PostCtrl', 'SignUpCtrl', 'LogInCtrl', 'navCtrl', 'ImageCtrl'])
+.config( function( $stateProvider, $urlRouterProvider ) {
+
+  $urlRouterProvider.otherwise('/home');
+
+  $stateProvider
+    .state('/', {
+      url: '/home',
+      templateUrl: '../views/home.html'
     })
 
-    .when('/post', {
-      templateUrl: 'views/new-post.html',
-      controller: 'PostController'
+    .state('post', {
+      url: '/post',
+      templateUrl: '../views/new-post.html'
     })
 
-    .when('/sign-up', {
-      templateUrl: 'views/sign-up.html',
-      controlller: 'SignUpController'
-    })
-
-    .when('/log-in', {
-      templateUrl: 'views/login.html',
-      controller: 'LogInController'
-    })
-
-    .when('*', {
-      templateUrl: 'views/home.html',
-      controller: 'HomeController'
-    });
+  // $routeProvider
+  //   .when('/', {
+  //     templateUrl: 'views/home.html',
+  //     controller: 'HomeController'
+  //   })
+  //
+  //   .when('/post', {
+  //     templateUrl: 'views/new-post.html',
+  //     controller: 'PostController'
+  //   })
+  //
+  //   .when('*', {
+  //     templateUrl: 'views/home.html',
+  //     controller: 'HomeController'
+  //   });
 
   // $locationProvider.html5Mode(true);
-
-}]);
+});
