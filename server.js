@@ -16,7 +16,8 @@ var passport = require('passport');
 var User = require('./app/models/user.js');
 var passportConfig = require('./config/passport.js');
 var jwt = require('express-jwt');
-var auth = jwt({ secret: 'SECRET', userProperty: 'payload' }); // strongly rec'd to use environment variable to reference secret
+// middleware for authenticating jwt tokens, strongly rec to use env variable to reference secret!
+var auth = jwt({ secret: 'SECRET', userProperty: 'payload' });
 
 var port = process.env.PORT || 8080;
 
@@ -134,7 +135,6 @@ app.post('/api/login', function (req, res, next) {
     }
   })(req, res, next);
 });
-
 
 // start app
 app.listen(port);
