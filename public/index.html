@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
 
     <script src="libs/angular/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
 
     <link rel="stylesheet" ng-href="libs/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" ng-href="css/main.css">
@@ -11,33 +12,28 @@
 </head>
 
 <body>
-  
+
   <header>
-    <a class="greeting" href="/#/"><img src="img/BTLogoBiColor.jpg" /></a>
+    <a class="greeting" href="/"><img src="img/BTLogoBiColor.jpg" /></a>
   </header>
+
     <nav class="navbar navbar-default">
       <div class="container-fluid">
-      <!--   <div class="navbar-header">
-          <a class="navbar-brand" href="/#/"><img class="main_logo" src="img/BTLogoblue.jpg"></a>
-        </div> -->
         <ul class="nav navbar-nav">
-          <!-- <li class="active"><a href="/#/">Home</a></li> -->
-          <li class="nav-link"><a href="/#/post">Post</a></li>
-          <li class="nav-link"><a href="http://createfeed.fivefilters.org/mergefeeds.php?url=https%3A%2F%2F511contracosta.org%2Fcycling-events%2Ffeed%2F%0Awww.meetup.com%2Fvelogirls%2Fevents%2Frss%2F%0Awww.meetup.com%2Fbikethebaycycists%2Fevents%2Frss%2F%0Awww.alamedactc.org%2Fevents%2Fupcoming%2Fnow%2F1.rss&t=Bay+Area+Biking+Events" target="_blank">Events</a></li>
-          <!-- TODO: implement log in and sign up -->
-          <!-- <li><a href="/#/log-in">Log In</a></li> -->
-          <!-- <li><a href="/#/sign-up">Sign Up</a></li> -->
+          <li class="nav-link"><a ui-sref="post">Post</a></li>
+          <li class="nav-link"><a ui-sref="http://createfeed.fivefilters.org/mergefeeds.php?url=https%3A%2F%2F511contracosta.org%2Fcycling-events%2Ffeed%2F%0Awww.meetup.com%2Fvelogirls%2Fevents%2Frss%2F%0Awww.meetup.com%2Fbikethebaycycists%2Fevents%2Frss%2F%0Awww.alamedactc.org%2Fevents%2Fupcoming%2Fnow%2F1.rss&t=Bay+Area+Biking+Events" target="_blank">Events</a></li>
           </ul>
       </div>
     </nav>
 
-  <div ng-view></div>
+  <div class="container">
+    <div ui-view></div>
+  </div>
 
-
-    <!-- angular libraries/dependencies -->
+    <!-- standard trick: scripts before closing 'body' tag ensures page elements have all loaded before referencing in code -->
 
     <script src="libs/angular-mocks/angular-mocks.js"></script>
-    <script src="libs/angular-route/angular-route.js"></script>
+    <!-- <script src="libs/angular-route/angular-route.js"></script> -->
     <!-- <script src="libs/ng-file-upload/ng-file-upload.js"></script> -->
     <script src="libs/filepicker-js/filepicker.js"></script>
     <script src="libs/angular-filepicker/dist/angular_filepicker.js"></script>
