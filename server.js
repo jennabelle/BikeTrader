@@ -8,9 +8,12 @@ var mongoose = require('mongoose');
 var Post = require('./app/models/post.js');
 var multipart = require('connect-multiparty');
 var multipartMiddleWare = multipart();
+var passport = require('passport');
+var User = require('./app/models/user.js');
+var passportConfig = require('./config/passport.js');
 
 // configure and connect to database
-var db = require('./config/db.js')
+var db = require('./config/db.js');
 
 var port = process.env.PORT || 8080;
 
@@ -23,10 +26,12 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 // parse app/w-www
 app.use(bodyParser.urlencoded({extended: true}));
 
-// override with x-http-method 
+// override with x-http-method
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 app.use(express.static(__dirname + '/public'));
+
+app.use(passport.initialize());
 
 // routes will go here*************************************************
 // set up routes and require here

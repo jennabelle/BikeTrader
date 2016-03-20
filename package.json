@@ -20,6 +20,8 @@
     "less": "^2.6.1",
     "method-override": "^2.3.5",
     "mongoose": "4.4.7",
-    "mongoose-file": "0.0.2"
+    "mongoose-file": "0.0.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
   }
 }
