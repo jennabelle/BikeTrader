@@ -11,6 +11,9 @@ var multipartMiddleWare = multipart();
 var passport = require('passport');
 var User = require('./app/models/user.js');
 var passportConfig = require('./config/passport.js');
+var jwt = require('express-jwt');
+
+var auth = jwt({ secret: 'SECRET', userProperty: 'payload' });
 
 // configure and connect to database
 var db = require('./config/db.js');
@@ -33,10 +36,11 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(passport.initialize());
 
-// routes will go here*************************************************
-// set up routes and require here
+// ======================================
+// ROUTES
+// ======================================
 
-// route for getting all bike listings
+// get all bike listings
 app.get('/api/feed', function(req, res, next) {
   Post.find(function(err, posts) {
     if (err) { return next (err); }
@@ -45,13 +49,11 @@ app.get('/api/feed', function(req, res, next) {
   });
 });
 
-
 var multipart = require('connect-multiparty');
 
 app.use(multipart({
   uploadDir: '/api/post'
 }));
-
 
 // // create file upload
 exports.create = function(req, res, next) {
@@ -64,8 +66,7 @@ exports.create = function(req, res, next) {
 //   console.log('uploadPath', uploadPath); // uploads directory
 };
 
-
-// route for creating a new bike listing
+// create new post
 app.post('/api/post', multipartMiddleWare, function(req, res, next) {
   console.log('\n\n\n req keys', Object.keys(req), '\n\n');
   console.log('\n\n\n\n req body', req.body, '\n\n\n');
