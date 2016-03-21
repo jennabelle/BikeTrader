@@ -1,5 +1,5 @@
 angular.module('authService', [])
-  .factory('authFactory', ['$http', $window, function($http, $window) {
+  .factory('authFactory', ['$http', '$window', function($http, $window) {
 
     var auth = {};
 
