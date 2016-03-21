@@ -18,7 +18,7 @@ var passport = require('passport');
 var User = require('./app/models/user.js');
 var passportConfig = require('./config/passport.js');
 var jwt = require('express-jwt');
-// middleware for authenticating jwt tokens, strongly rec to use env variable to reference secret!
+// middleware for authenticating jwt tokens, use env variable to reference secret!
 var auth = jwt({ secret: 'SECRET', userProperty: 'payload' });
 
 var port = process.env.PORT || 8080;
@@ -51,7 +51,6 @@ app.use(passport.initialize());
 app.get('/api/feed', function(req, res, next) {
   Post.find(function(err, posts) {
     if (err) { return next (err); }
-    // console.log('posts', posts);
     res.json(posts);
   });
 });
