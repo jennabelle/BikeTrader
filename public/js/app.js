@@ -10,6 +10,12 @@ angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 
       controller: 'CommunityController'
     })
 
+    .state('community', {
+      url: '/community',
+      templateUrl: '../views/community.html',
+      controller: 'CommunityController'
+    })
+
     .state('home', {
       url: '/home',
       templateUrl: '../views/home.html',
@@ -29,7 +35,7 @@ angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 
       // check if user is authenticated before entering state, redirect to home if logged in
       onEnter: [ '$state', 'authFactory', function($state, authFactory) {
         if (authFactory.isLoggedIn()) {
-          $state.go('home');
+          $state.go('community');
         }
       }]
     })
@@ -41,16 +47,11 @@ angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 
       // check if user is authenticated before entering state, redirect to home if logged in
       onEnter: [ '$state', 'authFactory', function($state, authFactory) {
         if (authFactory.isLoggedIn()) {
-          $state.go('home');
+          $state.go('community');
         }
       }]
     })
 
-    .state('community', {
-      url: '/community',
-      templateUrl: '../views/community.html',
-      controller: 'CommunityController'
-    })
 
     .state('logout', {
       url: '/logout',
@@ -59,7 +60,7 @@ angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 
       // check if user is authenticated before entering state, redirect to home if logged in
       onEnter: [ '$state', 'authFactory', function($state, authFactory) {
         if (authFactory.isLoggedIn()) {
-          $state.go('home');
+          $state.go('community');
         }
       }]
 
