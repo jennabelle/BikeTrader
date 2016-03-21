@@ -1,28 +1,40 @@
 
-<div class="row" ng-controller="CommunityController as CommunityCtrl">
-<div id="communityBody">
-<h1 id="hubGreet">Welcome to The Hub!</h1>
-<!-- <h2>Check out the latest on bikes:</h2> -->
-<!-- <div id="tweetContainer">
-  <table>
-  <tr>
-    <th>Handle</th>
-    <th>Tweet</th>
-    <th>Location</th>
-  </tr>
-  <tr ng-repeat="tweet in tweets">
-    <td>{{ tweet.user }}</td>
-    <td>{{ tweet.message }}</td>
-    <td>{{ tweet.location }}</td>
-  </tr>
-</table>
-</div> -->
+<div class="container" ng-controller="CommunityController as CommunityCtrl">
+  <div id="communityBody">
 
-<h2>What's on your mind?</h2>
-<div id="CommentContainer" ng-repeat="comment in comments">
-<p><strong>{{ currentUser() }}</strong>: {{ comment.comment }}</p>
-</div>
-<!-- <input type="text" placeholder="User" ng-model="user"></input> -->
-<input type="text" placeholder="What's on your mind.." ng-model="comment"></input>
-<input type="submit" ng-click="submitComment()"></input>
+    <div clas="row">
+
+      <div class="col-md-6">
+        <h1>HELLO</h1>
+      </div>
+
+        <div class="col-md-6">
+            <h1 id="hubGreet" class="jumbotron">Welcome to The Hub!</h1>
+            <!-- <h2>Check out the latest on bikes:</h2> -->
+            <!-- <div id="tweetContainer">
+              <table>
+              <tr>
+                <th>Handle</th>
+                <th>Tweet</th>
+                <th>Location</th>
+              </tr>
+              <tr ng-repeat="tweet in tweets">
+                <td>{{ tweet.user }}</td>
+                <td>{{ tweet.message }}</td>
+                <td>{{ tweet.location }}</td>
+              </tr>
+            </table>
+            </div> -->
+
+            <h2 class="lead">What's on your mind?</h2>
+            <div id="CommentContainer" ng-repeat="comment in comments">
+            <p><strong>{{ currentUser() }}</strong>: {{ comment.comment }}</p>
+            </div>
+            <!-- <input type="text" placeholder="User" ng-model="user"></input> -->
+            <input type="text" placeholder="What's on your mind.." ng-model="comment"></input>
+            <input type="submit" ng-click="submitComment()"></input>
+          </div>
+
+    </div>
+
 </div>

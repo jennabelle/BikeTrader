@@ -14,18 +14,17 @@ var tweets = [];
 
 twitter.stream('statuses/filter', {track: 'bike, biking, cycling, sf bike, sf biking, bay bike, bay biking'}, function(stream){
 
-stream.on('data', function(data){
-  // console.log(util.inspect(data));
-  tweets.push(data);
-
+  stream.on('data', function(data){
+    // console.log(util.inspect(data));
+    tweets.push(data);
   });
 
-setTimeout(function(){
-      for(var i = 0; i < tweets.length; i++){
-  console.log(tweets[i].user.screen_name + ': ' + tweets[i].text);
-}
-  stream.destroy();
-  process.exit(0);
-}, 10000);
+  setTimeout(function(){
+    for(var i = 0; i < tweets.length; i++){
+      console.log(tweets[i].user.screen_name + ': ' + tweets[i].text);
+    }
+    stream.destroy();
+    process.exit(0);
+  }, 10000);
 
 });
