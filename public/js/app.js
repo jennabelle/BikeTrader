@@ -1,39 +1,73 @@
-angular.module('bikeTrader', ['ngRoute', 'angular-filepicker', 'postService', 'HomeCtrl', 'PostCtrl', 'CommunityCtrl', 'SignUpCtrl', 'LogInCtrl', 'navCtrl', 'ImageCtrl'])
-.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-  $routeProvider
-    // nerds page that will use the NerdController
-    
-    .when('/', {
-      templateUrl: 'views/home.html',
+angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 'authService', 'AuthCtrl', 'HomeCtrl', 'PostCtrl', 'CommunityCtrl', 'navCtrl', 'ImageCtrl'])
+.config( function( $stateProvider, $urlRouterProvider ) {
+
+  $urlRouterProvider.otherwise('/login');
+
+  $stateProvider
+    .state('/', {
+      url: '/home',
+      templateUrl: '../views/home.html',
       controller: 'HomeController'
     })
 
-    .when('/post', {
-      templateUrl: 'views/new-post.html',
+    .state('home', {
+      url: '/home',
+      templateUrl: '../views/home.html',
+      controller: 'HomeController'
+    })
+
+    .state('post', {
+      url: '/post',
+      templateUrl: '../views/new-post.html',
       controller: 'PostController'
     })
 
-    .when('/sign-up', {
-      templateUrl: 'views/sign-up.html',
-      controlller: 'SignUpController'
+    .state('login', {
+      url: '/login',
+      templateUrl: '../views/login.html',
+      controller: 'AuthController',
+      // check if user is authenticated before entering state, redirect to home if logged in
+      onEnter: [ '$state', 'authFactory', function($state, authFactory) {
+        if (authFactory.isLoggedIn()) {
+          $state.go('home');
+        }
+      }]
     })
 
-    .when('/log-in', {
-      templateUrl: 'views/login.html',
-      controller: 'LogInController'
+    .state('register', {
+      url: '/register',
+      templateUrl: '../views/register.html',
+      controller: 'AuthController',
+      // check if user is authenticated before entering state, redirect to home if logged in
+      onEnter: [ '$state', 'authFactory', function($state, authFactory) {
+        if (authFactory.isLoggedIn()) {
+          $state.go('home');
+        }
+      }]
     })
 
-//JB community route addition
-    .when('/community', {
-      templateUrl: 'views/community.html',
-      controller: 'CommunityController'
+    .state('community', {
+      url: '/community',
+      templateUrl: '../view/community.html',
+      controller: 'CommunityController',
+
+      onEnter: [ '$state', 'authFactory', function($state, authFactory) {
+        if (authFactory.isLoggedIn()) {
+          $state.go('home');
+        }
+      }]
     })
 
-    .when('*', {
-      templateUrl: 'views/home.html',
-      controller: 'HomeController'
+    .state('logout', {
+      url: '/logout',
+      templateUrl: '../views/login.html',
+      controller: 'AuthController',
+      // check if user is authenticated before entering state, redirect to home if logged in
+      onEnter: [ '$state', 'authFactory', function($state, authFactory) {
+        if (authFactory.isLoggedIn()) {
+          $state.go('home');
+        }
+      }]
+
     });
-
-  // $locationProvider.html5Mode(true);
-
-}]);
+});

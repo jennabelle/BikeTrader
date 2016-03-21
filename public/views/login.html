@@ -1,8 +1,23 @@
-<div class="row" ng-controller="LogInController">
-  <div class="container">
-    <form name="log-in-form" novalidate>
-      <input class="log-in" type="text" placeholder="Name" ng-model="user.name" ng-required></input>
-      <input class="log-in" type="password" placeholder="Password" ngMinlength="8" ng-required></input>
-    </form>
+<div class="loginReg-background">
+  <div class="loginRegBox">
+
+      <h1 class="text-center">Login</h1>
+      <br>
+
+      <div class="text-center">
+        <div ng-show="error" class="alert alert-danger row">
+          <span>{{ error.message }}</span>
+        </div>
+
+        <form ng-submit="logIn()">
+          <input type="text" ng-model="user.username" placeholder="username" required></input>
+          <input type="password" ng-model="user.password" placeholder="password" required></input>
+          <button type="submit" class="btn btn-primary" style="border-style:none;">Submit</button>
+          <br><br>
+          <a class="memberRegAndLog" ui-sref="register">Not a member? Sign up!</a>
+        </form>
+
+      </div>
+
   </div>
 </div>

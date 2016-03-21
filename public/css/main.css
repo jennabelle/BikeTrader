@@ -50,3 +50,37 @@ header {
   height: 500px;
   margin-left: 50%;
 }
+
+/*************************************
+LOGIN / REGISTRATION PAGE
+*************************************/
+
+.loginReg-background {
+  background: url("../img/TheHub.jpeg");
+  background-size: cover; /* css trick to get full background image */
+  background-position: center; /* image will be centered no matter how wide the screen is */
+  height: 700px;
+  width: 100%;
+}
+.loginRegBox {
+  width: 320px;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, .3);
+  border-radius: 10px;
+  top: 18%;
+  position: relative;
+}
+.loginRegBox input {
+  padding: 11px;
+  font-size: 14px;
+  display: block;
+  margin: 7px auto;
+  border: 1px solid #7D7D7D;
+  border-radius: 4px;
+  width: 250px;
+}
+.memberRegAndLog {
+  color: black;
+  font-weight: bold;
+}

@@ -1,4 +1,7 @@
-// modules
+// ======================================
+// SETUP
+// ======================================
+
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -8,15 +11,21 @@ var mongoose = require('mongoose');
 var Post = require('./app/models/post.js');
 var multipart = require('connect-multiparty');
 var multipartMiddleWare = multipart();
-// configure and connect to database
-var db = require('./config/db.js');
 //JB added code. 
 var io = require('socket.io').listen(port);
+var db = require('./config/db.js');
+var passport = require('passport');
+var User = require('./app/models/user.js');
+var passportConfig = require('./config/passport.js');
+var jwt = require('express-jwt');
+// middleware for authenticating jwt tokens, strongly rec to use env variable to reference secret!
+var auth = jwt({ secret: 'SECRET', userProperty: 'payload' });
 
 var port = process.env.PORT || 8080;
 
-
-
+// ======================================
+// CONFIGURATION
+// ======================================
 
 // get all data of POST body
 app.use(bodyParser.json());
@@ -27,15 +36,18 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 // parse app/w-www
 app.use(bodyParser.urlencoded({extended: true}));
 
-// override with x-http-method 
+// override with x-http-method
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 app.use(express.static(__dirname + '/public'));
 
-// routes will go here*************************************************
-// set up routes and require here
+app.use(passport.initialize());
 
-// route for getting all bike listings
+// ======================================
+// ROUTES
+// ======================================
+
+// get all bike listings
 app.get('/api/feed', function(req, res, next) {
   Post.find(function(err, posts) {
     if (err) { return next (err); }
@@ -44,15 +56,13 @@ app.get('/api/feed', function(req, res, next) {
   });
 });
 
-
 var multipart = require('connect-multiparty');
 
 app.use(multipart({
   uploadDir: '/api/post'
 }));
 
-
-// // create file upload
+// create file upload
 exports.create = function(req, res, next) {
   var data = _.pick(req.body, 'type');
   var uploadPath = path.normalize(fcg.data + '/uploads');
@@ -63,8 +73,7 @@ exports.create = function(req, res, next) {
 //   console.log('uploadPath', uploadPath); // uploads directory
 };
 
-
-// route for creating a new bike listing
+// create new post
 app.post('/api/post', multipartMiddleWare, function(req, res, next) {
   console.log('\n\n\n req keys', Object.keys(req), '\n\n');
   console.log('\n\n\n\n req body', req.body, '\n\n\n');
@@ -75,7 +84,8 @@ app.post('/api/post', multipartMiddleWare, function(req, res, next) {
     price: req.body.price,
     picFile: req.body.picFile,
     email: req.body.email,
-    dateCreated: req.body.dateCreated
+    dateCreated: req.body.dateCreated,
+    // author: req.payload.username // jenna: need to add 'auth' here first before referenceing payload!
   });
   console.log('\n\n\n newPost', newPost, '\n\n\n');
   // console.log('\n\n\n\n%%%%%%%%%%%%%%%%  req', body, '\n\n\n\n$$$$$$$$$$$$$$');
@@ -83,13 +93,57 @@ app.post('/api/post', multipartMiddleWare, function(req, res, next) {
     if (err) { return next(err); }
     res.json(req.body);
   });
-
 });
 
-// start app
-app.listen(port);
+// register new user
+app.post('/register', function (req, res, next) {
 
-// shout out to the user
-console.log('Listening on port:', port);
+  if (!req.body.username || !req.body.password) {
+    return res.status(400).json({ message: 'Please fill out all fields.' });
+  }
+
+  var user = new User();
+  user.username = req.body.username;
+  user.setPassword(req.body.password);
+
+  user.save(function (err) {
+    if (err) {
+      return next(err);
+    }
+    return res.json({
+      token: user.generateJWT()
+    });
+  })
+});
+
+// login user
+app.post('/login', function (req, res, next) {
+
+  if (!req.body.username || !req.body.password) {
+    return res.status(400).json({ message: 'Please fill out all fields. '});
+  }
+
+  passport.authenticate('local', function (err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (user) {
+      return res.json({
+        token: user.generateJWT()
+      });
+    }
+    else {
+      return res.status(401).json(info);
+    }
+  })(req, res, next);
+});
+
+// ======================================
+// Listen (start app with node server.js)
+// ======================================
+
+app.listen( port, function() {
+  console.log( 'Server listening on port ' + port + '...\n' );
+});
 
 module.exports = app;
