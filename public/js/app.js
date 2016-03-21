@@ -5,9 +5,9 @@ angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 
 
   $stateProvider
     .state('/', {
-      url: '/home',
-      templateUrl: '../views/home.html',
-      controller: 'HomeController'
+      url: '/community',
+      templateUrl: '../views/community.html',
+      controller: 'CommunityController'
     })
 
     .state('home', {
