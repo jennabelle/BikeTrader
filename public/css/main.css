@@ -32,8 +32,7 @@ header {
 }
 
 #logo{
-  display: inline-block;
-  float right;
+  display: inline;
   width: 25%;
   height: 25%;
 }
@@ -43,8 +42,9 @@ header {
 }
 
 #communityBody{
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
   margin-left: 50%;
 }
 
