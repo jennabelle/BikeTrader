@@ -1,4 +1,4 @@
-angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 'authService', 'AuthCtrl', 'HomeCtrl', 'PostCtrl', 'navCtrl', 'ImageCtrl'])
+angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 'authService', 'AuthCtrl', 'HomeCtrl', 'PostCtrl', 'CommunityCtrl', 'navCtrl', 'ImageCtrl'])
 .config( function( $stateProvider, $urlRouterProvider ) {
 
   $urlRouterProvider.otherwise('/login');
@@ -46,6 +46,18 @@ angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 
       }]
     })
 
+    .state('community', {
+      url: '/community',
+      templateUrl: '../views/community.html',
+      controller: 'CommunityController',
+
+      onEnter: [ '$state', 'authFactory', function($state, authFactory) {
+        if (authFactory.isLoggedIn()) {
+          $state.go('home');
+        }
+      }]
+    })
+
     .state('logout', {
       url: '/logout',
       templateUrl: '../views/login.html',
@@ -56,5 +68,6 @@ angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 
           $state.go('home');
         }
       }]
+
     });
 });
