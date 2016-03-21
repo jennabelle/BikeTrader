@@ -1,10 +1,28 @@
 
 <div class="row" ng-controller="CommunityController as CommunityCtrl">
+<div id="communityBody">
 <h1>Welcome to The Hub!</h1>
-<h2>Check out the latest on bikes:</h2>
-<div id="tweetContainer"></div>
+<!-- <h2>Check out the latest on bikes:</h2> -->
+<div id="tweetContainer">
+  <table>
+  <tr>
+    <th>Handle</th>
+    <th>Tweet</th>
+    <th>Location</th>
+  </tr>
+  <tr ng-repeat="tweet in tweets">
+    <td>{{ tweet.user }}</td>
+    <td>{{ tweet.message }}</td>
+    <td>{{ tweet.location }}</td>
+  </tr>
+</table>
+</div>
 
-<div id="CommentContainer"></div>
-<input type="text" placeholder="What's on your mind.."></input>
-<input type="submit"></input>
- 
+<h3>What's on your mind?</h3>
+<div id="CommentContainer" ng-repeat="comment in comments">
+<p><strong>{{ comment.user }}</strong>: {{ comment.comment }}</p>
+</div>
+<input type="text" placeholder="User" ng-model="user"></input>
+<input type="text" placeholder="What's on your mind.." ng-model="comment"></input>
+<input type="submit" ng-click="submitComment()"></input>
+</div>

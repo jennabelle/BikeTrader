@@ -8,11 +8,15 @@ var mongoose = require('mongoose');
 var Post = require('./app/models/post.js');
 var multipart = require('connect-multiparty');
 var multipartMiddleWare = multipart();
-
 // configure and connect to database
-var db = require('./config/db.js')
+var db = require('./config/db.js');
+//JB added code. 
+var io = require('socket.io').listen(port);
 
 var port = process.env.PORT || 8080;
+
+
+
 
 // get all data of POST body
 app.use(bodyParser.json());
