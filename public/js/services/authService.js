@@ -37,16 +37,18 @@ angular.module('authService', [])
       }
     };
 
-    // take user to '/api/register' route, save token returned
+    // take user to '/register' route, save token returned
     auth.register = function (user) {
-      return $http.post('/api/register', user).success(function(data) {
+      console.log('-----------inside authFactory register!! user: ', user);
+      return $http.post('/register', user).success(function(data) {
         auth.saveToken(data.token);
       });
     };
 
-    // take user to '/api/login' route, save token
-    auth.login = function (user) {
-      return $http.post('/api/login', user).success(function(data) {
+    // take user to '/login' route, save token
+    auth.logIn = function (user) {
+      console.log('-----------inside authFactory login!! user: ', user);
+      return $http.post('/login', user).success(function(data) {
         auth.saveToken(data.token);
       });
     };

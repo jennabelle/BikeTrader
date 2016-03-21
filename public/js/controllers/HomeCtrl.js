@@ -8,13 +8,11 @@ angular.module('HomeCtrl', [])
     PostAd.showBikes()
       .then(function(posts) {
         $scope.data.posts = posts;
-        console.log('posts', $scope.data);
       })
       .catch(function(error) {
         console.error(error);
       });
   };
-  
   $scope.getPosts();
 
 }]);

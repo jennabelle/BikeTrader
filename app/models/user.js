@@ -6,7 +6,7 @@ var UserSchema = new mongoose.Schema({
   username: { type: String, lowercase: true, unique: true },
   hash: String,
   salt: String
-});
+}, { collection: 'User' });
 
 // when user sets password
 UserSchema.methods.setPassword = function (password) {
@@ -35,4 +35,4 @@ UserSchema.methods.generateJWT = function () {
   }, 'SECRET'); // jenna: use environment variable to reference secret and keep out of codebase
 };
 
-mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
