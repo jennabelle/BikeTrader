@@ -1,8 +1,10 @@
 angular.module('CommunityCtrl', [])
 
 
-.controller('CommunityController', function($scope){
+.controller('CommunityController', ['$scope', 'authFactory', function($scope, authFactory){
  
+ $scope.currentUser = authFactory.currentUser;
+
  $scope.comments = [];
 
  $scope.submitComment = function(){
@@ -10,5 +12,5 @@ angular.module('CommunityCtrl', [])
  }
 
 
-});
+}]);
 

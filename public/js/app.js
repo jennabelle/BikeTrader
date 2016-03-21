@@ -49,13 +49,7 @@ angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 
     .state('community', {
       url: '/community',
       templateUrl: '../views/community.html',
-      controller: 'CommunityController',
-
-      onEnter: [ '$state', 'authFactory', function($state, authFactory) {
-        if (authFactory.isLoggedIn()) {
-          $state.go('home');
-        }
-      }]
+      controller: 'CommunityController'
     })
 
     .state('logout', {
