@@ -20,9 +20,9 @@
 
 <h3>What's on your mind?</h3>
 <div id="CommentContainer" ng-repeat="comment in comments">
-<p><strong>{{ comment.user }}</strong>: {{ comment.comment }}</p>
+<p><strong>{{ currentUser() }}</strong>: {{ comment.comment }}</p>
 </div>
-<input type="text" placeholder="User" ng-model="user"></input>
+<!-- <input type="text" placeholder="User" ng-model="user"></input> -->
 <input type="text" placeholder="What's on your mind.." ng-model="comment"></input>
 <input type="submit" ng-click="submitComment()"></input>
 </div>
