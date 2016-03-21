@@ -25,3 +25,43 @@ header {
   border-width: 2px;
   margin: 1px;
 }
+
+/*************************************
+LOGIN PAGE
+*************************************/
+
+.loginReg-background {
+  /* background: url("../images/loginBackground.jpg"); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 60%; /* offset, for image-specific focal point */
+  height: 90vh; /* combined with menu = 100% screen height */
+}
+
+.loginRegBox {
+  width: 320px;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, .3);
+  border-radius: 10px;
+  top: 18%;
+  position: relative;
+}
+
+.loginRegBox input {
+  padding: 11px;
+  font-size: 14px;
+  display: block;
+  margin: 7px auto;
+  border: 1px solid #7D7D7D;
+  border-radius: 4px;
+  width: 250px;
+}
+
+.memberRegAndLog:hover {
+  color: #191919;
+}
+
+/*************************************
+REGISTRATION PAGE
+*************************************/
