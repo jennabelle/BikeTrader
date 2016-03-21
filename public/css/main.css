@@ -1,9 +1,18 @@
+html{
+  background-color: #FFD900;
+}
 header {
-  background-image: url('../img/lizzieschwinn.jpg');
+  background-color: #424242;
   background-repeat: no-repeat;
   background-position: right center;
-  background-size: contain;
+  /*background-size: contain;*/
+  background-size: 100px;
 }
+
+.ng-view{
+  background-color: #00CCD6;
+}
+
 .nav-link {
   margin: 5px;
   padding: 5px;
@@ -15,6 +24,7 @@ header {
 .ng-valid.ng-dirty {
   border-color: #78FA89;
 }
+
 .ad {
   width: 90%;
   background-color: #89ABE3;
@@ -24,6 +34,21 @@ header {
   border-color: black;
   border-width: 2px;
   margin: 1px;
+}
+
+#logo{
+  width: 25%;
+  height: 25%;
+}
+
+#CommentContainer{
+  font-size: 200%;
+}
+
+#communityBody{
+  width: 500;
+  height: 500px;
+  margin-left: 50%;
 }
 
 /*************************************

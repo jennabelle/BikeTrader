@@ -11,6 +11,8 @@ var mongoose = require('mongoose');
 var Post = require('./app/models/post.js');
 var multipart = require('connect-multiparty');
 var multipartMiddleWare = multipart();
+//JB added code. 
+var io = require('socket.io').listen(port);
 var db = require('./config/db.js');
 var passport = require('passport');
 var User = require('./app/models/user.js');
