@@ -5,17 +5,15 @@ angular.module('AuthCtrl', [])
     $scope.register = function () {
       authFactory.register($scope.user).error(function(error) {
         $scope.error = error;
-      }).then(function(response) {
+      }).then(function() {
         $state.go('home');
       });
     };
 
     $scope.logIn = function () {
-      console.log('--------------------inside AuthController $scope.logIn!');
       authFactory.logIn($scope.user).error(function(error) {
         $scope.error = error;
-      }).then(function(response) {
-        console.log('---------inside AuthController login! this is what $http returned: ', response.body);
+      }).then(function() {
         $state.go('home');
       });
     };
