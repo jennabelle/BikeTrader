@@ -28,7 +28,7 @@ UserSchema.methods.generateJWT = function () {
   var exp = new Date(today);
   exp.setDate(today.getDate() + 60); // Unix timestamp in seconds when token expires
 
-  return jwt.sign({ // payload that gets signed, both server and client have access to payload
+  return jwt.sign({ // payload that gets signed, both server and client have access to this payload
     _id: this._id,
     username: this.username,
     exp: parseInt(exp.getTime() / 1000)
