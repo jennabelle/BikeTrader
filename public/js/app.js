@@ -48,7 +48,7 @@ angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 
 
     .state('community', {
       url: '/community',
-      templateUrl: '../view/community.html',
+      templateUrl: '../views/community.html',
       controller: 'CommunityController',
 
       onEnter: [ '$state', 'authFactory', function($state, authFactory) {
