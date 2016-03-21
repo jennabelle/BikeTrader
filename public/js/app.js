@@ -44,5 +44,17 @@ angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 
           $state.go('home');
         }
       }]
+    })
+
+    .state('logout', {
+      url: '/logout',
+      templateUrl: '../views/login.html',
+      controller: 'AuthController',
+      // check if user is authenticated before entering state, redirect to home if logged in
+      onEnter: [ '$state', 'authFactory', function($state, authFactory) {
+        if (authFactory.isLoggedIn()) {
+          $state.go('home');
+        }
+      }]
     });
 });
