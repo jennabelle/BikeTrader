@@ -1,16 +1,10 @@
-html{
-  background-color: #FFD900;
-}
+
 header {
   background-color: #424242;
   background-repeat: no-repeat;
   background-position: right center;
   /*background-size: contain;*/
   background-size: 100px;
-}
-
-.ng-view{
-  background-color: #00CCD6;
 }
 
 .nav-link {
@@ -27,7 +21,8 @@ header {
 
 .ad {
   width: 90%;
-  background-color: #89ABE3;
+  color: white;
+  background-color: #424242;
   background-opacity: 0.5;
   border-style: solid;
   border-radius: 20px;
@@ -37,6 +32,8 @@ header {
 }
 
 #logo{
+  display: inline-block;
+  float right;
   width: 25%;
   height: 25%;
 }
@@ -46,7 +43,7 @@ header {
 }
 
 #communityBody{
-  width: 500;
+  width: 500px;
   height: 500px;
   margin-left: 50%;
 }
@@ -84,3 +81,4 @@ LOGIN / REGISTRATION PAGE
   color: black;
   font-weight: bold;
 }
+

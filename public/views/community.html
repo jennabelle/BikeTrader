@@ -1,9 +1,9 @@
 
 <div class="row" ng-controller="CommunityController as CommunityCtrl">
 <div id="communityBody">
-<h1>Welcome to The Hub!</h1>
+<h1 id="hubGreet">Welcome to The Hub!</h1>
 <!-- <h2>Check out the latest on bikes:</h2> -->
-<div id="tweetContainer">
+<!-- <div id="tweetContainer">
   <table>
   <tr>
     <th>Handle</th>
@@ -16,9 +16,9 @@
     <td>{{ tweet.location }}</td>
   </tr>
 </table>
-</div>
+</div> -->
 
-<h3>What's on your mind?</h3>
+<h2>What's on your mind?</h2>
 <div id="CommentContainer" ng-repeat="comment in comments">
 <p><strong>{{ currentUser() }}</strong>: {{ comment.comment }}</p>
 </div>

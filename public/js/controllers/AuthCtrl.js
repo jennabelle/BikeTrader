@@ -6,7 +6,7 @@ angular.module('AuthCtrl', [])
       authFactory.register($scope.user).error(function(error) {
         $scope.error = error;
       }).then(function() {
-        $state.go('home');
+        $state.go('community');
       });
     };
 
@@ -14,7 +14,7 @@ angular.module('AuthCtrl', [])
       authFactory.logIn($scope.user).error(function(error) {
         $scope.error = error;
       }).then(function() {
-        $state.go('home');
+        $state.go('community');
       });
     };
 }]);
