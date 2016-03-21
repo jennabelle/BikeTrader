@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <script src="libs/angular/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <link rel="stylesheet" ng-href="libs/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" ng-href="css/main.css">
     <title>Bike Trader</title>
 </head>
 <body>
 
-  <header>
-    <a class="greeting" href="/"><img src="img/BTLogoBiColor.jpg" /></a>
-  </header>
+<div class="container contentContainer">
 
     <!-- navigation bar -->
-    <nav class="navbar navbar-default" ng-controller="navController" role="navigation">
+    <nav ng-show="isLoggedIn()" class="navbar navbar-inverse" ng-controller="navController" role="navigation">
       <div class="container-fluid">
         <ul class="nav navbar-nav">
           <li ng-show="isLoggedIn()" class="nav-link"><a>Hello, {{ currentUser() }}!</a></li>
           <li ng-hide="isLoggedIn()" class="nav-link"><a ui-sref="login">Log In</a></li>
           <li ng-hide="isLoggedIn()" class="nav-link"><a ui-sref="register">Register</a></li>
+          <li ng-show="isLoggedIn()" class="nav-link"><a ui-sref="home">Home</a></li>
           <li ng-show="isLoggedIn()" class="nav-link"><a ui-sref="post">Post</a></li>
           <li ng-show="isLoggedIn()" class="nav-link"><a href="http://createfeed.fivefilters.org/mergefeeds.php?url=https%3A%2F%2F511contracosta.org%2Fcycling-events%2Ffeed%2F%0Awww.meetup.com%2Fvelogirls%2Fevents%2Frss%2F%0Awww.meetup.com%2Fbikethebaycycists%2Fevents%2Frss%2F%0Awww.alamedactc.org%2Fevents%2Fupcoming%2Fnow%2F1.rss&t=Bay+Area+Biking+Events" target="_blank">Events</a></li>
           <li ng-show="isLoggedIn()" class="nav-link"><a ui-sref="logout" ng-click="logOut()">Log Out</a></li>
@@ -29,9 +30,9 @@
     </nav>
 
     <!-- views render here -->
-    <div class="container">
-      <div ui-view></div>
-    </div>
+    <div ui-view></div>
+
+  </div>
 
     <!-- standard trick: scripts before closing 'body' tag ensures page elements have all loaded before referencing in code -->
     <script src="libs/angular-mocks/angular-mocks.js"></script>
@@ -46,5 +47,10 @@
     <script src="js/controllers/navController.js"></script>
     <script src="js/controllers/ImageCtrl.js"></script>
     <script src="js/app.js"></script>
+    <script>
+      /* Set height of image equal to height of window */
+      /* If height of device is smaller than height of content, specify min height should be equal to the window */
+      $(".contentContainer").css("min-height",$(window).height());
+    </script>
   </body>
 </html>

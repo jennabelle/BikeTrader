@@ -1,4 +1,7 @@
 <div class="jumbotron text-center" ng-controller="HomeController as HomeCtrl">
+  
+  <input type="text" placeholder="search by keyword" size="40px"></input><br /><br />
+
   <div ng-repeat="post in data.posts | orderBy:'dateCreated':reverse" class="container">
     <div class="ad">
       <h3>{{ post.title }} &nbsp ${{ post.price }}</h3>

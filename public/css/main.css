@@ -31,13 +31,12 @@ LOGIN / REGISTRATION PAGE
 *************************************/
 
 .loginReg-background {
-  /* background: url("../images/loginBackground.jpg"); */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center 60%; /* offset, for image-specific focal point */
-  height: 90vh; /* combined with menu = 100% screen height */
+  background: url("../img/TheHub.jpeg");
+  background-size: cover; /* css trick to get full background image */
+  background-position: center; /* image will be centered no matter how wide the screen is */
+  height: 700px;
+  width: 100%;
 }
-
 .loginRegBox {
   width: 320px;
   padding: 20px;
@@ -47,7 +46,6 @@ LOGIN / REGISTRATION PAGE
   top: 18%;
   position: relative;
 }
-
 .loginRegBox input {
   padding: 11px;
   font-size: 14px;
@@ -57,7 +55,7 @@ LOGIN / REGISTRATION PAGE
   border-radius: 4px;
   width: 250px;
 }
-
-/*************************************
-REGISTRATION PAGE
-*************************************/
+.memberRegAndLog {
+  color: black;
+  font-weight: bold;
+}
