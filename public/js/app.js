@@ -1,22 +1,30 @@
 angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 'authService', 'AuthCtrl', 'HomeCtrl', 'PostCtrl', 'navCtrl', 'ImageCtrl'])
 .config( function( $stateProvider, $urlRouterProvider ) {
 
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/login');
 
   $stateProvider
     .state('/', {
       url: '/home',
-      templateUrl: '../views/home.html'
+      templateUrl: '../views/home.html',
+      controller: 'HomeController'
+    })
+
+    .state('home', {
+      url: '/home',
+      templateUrl: '../views/home.html',
+      controller: 'HomeController'
     })
 
     .state('post', {
       url: '/post',
-      templateUrl: '../views/new-post.html'
+      templateUrl: '../views/new-post.html',
+      controller: 'PostController'
     })
 
     .state('login', {
       url: '/login',
-      templateUrl: '/login.html',
+      templateUrl: '../views/login.html',
       controller: 'AuthController',
       // check if user is authenticated before entering state, redirect to home if logged in
       onEnter: [ '$state', 'authFactory', function($state, authFactory) {
@@ -28,7 +36,7 @@ angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 
 
     .state('register', {
       url: '/register',
-      templateUrl: '/register.html',
+      templateUrl: '../views/register.html',
       controller: 'AuthController',
       // check if user is authenticated before entering state, redirect to home if logged in
       onEnter: [ '$state', 'authFactory', function($state, authFactory) {
@@ -37,5 +45,4 @@ angular.module('bikeTrader', ['ui.router', 'angular-filepicker', 'postService', 
         }
       }]
     });
-
 });

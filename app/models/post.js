@@ -1,8 +1,6 @@
-// grab the mongoose model
 var mongoose = require('mongoose');
 var fs = require('fs');
-// var
-//define ad post model
+
 var postSchema = new mongoose.Schema({
 
   title: {type: String, default: '', required: true, trim: true, maxlength: 25},

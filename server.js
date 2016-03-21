@@ -60,7 +60,7 @@ app.use(multipart({
   uploadDir: '/api/post'
 }));
 
-// // create file upload
+// create file upload
 exports.create = function(req, res, next) {
   var data = _.pick(req.body, 'type');
   var uploadPath = path.normalize(fcg.data + '/uploads');
@@ -94,7 +94,7 @@ app.post('/api/post', multipartMiddleWare, function(req, res, next) {
 });
 
 // register new user
-app.post('/api/register', function (req, res, next) {
+app.post('/register', function (req, res, next) {
 
   if (!req.body.username || !req.body.password) {
     return res.status(400).json({ message: 'Please fill out all fields.' });
@@ -115,7 +115,7 @@ app.post('/api/register', function (req, res, next) {
 });
 
 // login user
-app.post('/api/login', function (req, res, next) {
+app.post('/login', function (req, res, next) {
 
   if (!req.body.username || !req.body.password) {
     return res.status(400).json({ message: 'Please fill out all fields. '});
@@ -136,10 +136,12 @@ app.post('/api/login', function (req, res, next) {
   })(req, res, next);
 });
 
-// start app
-app.listen(port);
+// ======================================
+// Listen (start app with node server.js)
+// ======================================
 
-// shout out to the user
-console.log('Listening on port:', port);
+app.listen( port, function() {
+  console.log( 'Server listening on port ' + port + '...\n' );
+});
 
 module.exports = app;
