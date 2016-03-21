@@ -9,6 +9,7 @@ angular.module('CommunityCtrl', [])
 
  $scope.submitComment = function(){
   $scope.comments.push({user: $scope.user, comment: $scope.comment});
+  $scope.comment = '';
  }
 
 
