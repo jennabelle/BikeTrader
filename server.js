@@ -11,8 +11,6 @@ var mongoose = require('mongoose');
 var Post = require('./app/models/post.js');
 var multipart = require('connect-multiparty');
 var multipartMiddleWare = multipart();
-//JB added code. 
-var io = require('socket.io').listen(port);
 var db = require('./config/db.js');
 var passport = require('passport');
 var User = require('./app/models/user.js');
@@ -22,6 +20,9 @@ var jwt = require('express-jwt');
 var auth = jwt({ secret: 'SECRET', userProperty: 'payload' });
 
 var port = process.env.PORT || 8080;
+
+//JB added code.
+var twit = require('twitter');
 
 // ======================================
 // CONFIGURATION
@@ -46,6 +47,42 @@ app.use(passport.initialize());
 // ======================================
 // ROUTES
 // ======================================
+
+app.get('/getTweets', function(req, res, next) {
+
+  var twitter = new twit({
+    consumer_key: 'vIWWtYpagZz1ceoevoReoYDFQ',
+    consumer_secret: 'EY4frzRxk4macWbyEVMknaHU3kJwtzYctH1Y8cv4nplSWaUEuA',
+    access_token_key: '710623884404334593-uUr0AaxISTPeA4BYyRg31bhyjKtWNHU',
+    access_token_secret: 'ToZVApLXWpkiLRbjjGZViN9Q7WD9yAYFB8GlfusHvceUl'
+  });
+
+  var tweets = [];
+
+  twitter.stream('statuses/filter', {track: 'bike, biking, cycling, sf bike, sf biking, bay bike, bay biking'}, function(stream){
+
+    stream.on('data', function(data){
+      // console.log(util.inspect(data));
+      tweets.push(data);
+    });
+
+    stream.on('error', function(error) {
+      throw error;
+    });
+
+    setTimeout(function(){
+      for(var i = 0; i < tweets.length; i++){
+        console.log(tweets[i].user.screen_name + ': ' + tweets[i].text);
+      }
+      stream.destroy();
+      process.exit(0);
+    }, 10000);
+  });
+
+  // return tweets array
+  return res.send(tweets);
+
+});
 
 // get all bike listings
 app.get('/api/feed', function(req, res, next) {
@@ -144,5 +181,7 @@ app.post('/login', function (req, res, next) {
 app.listen( port, function() {
   console.log( 'Server listening on port ' + port + '...\n' );
 });
+
+var io = require('socket.io').listen(port);
 
 module.exports = app;
