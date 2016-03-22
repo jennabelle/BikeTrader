@@ -4,7 +4,8 @@
   "description": "Greenfield Project for Telegraph Academy",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -20,9 +21,7 @@
     "jsonwebtoken": "^5.7.0",
     "less": "^2.6.1",
     "method-override": "^2.3.5",
-    "mongoose": "4.4.7"
-  },
-  "devDependencies": {
+    "mongoose": "4.4.7",
     "socket.io": "^1.4.5",
     "twitter": "^1.2.5",
     "mongoose-file": "0.0.2",
