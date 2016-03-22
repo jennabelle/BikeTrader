@@ -32,7 +32,9 @@ header {
 }
 
 #logo{
+  float: right;
   display: inline;
+  clear: both;
   width: 25%;
   height: 25%;
   padding: 0;
@@ -86,3 +88,30 @@ LOGIN / REGISTRATION PAGE
   color: black;
   font-weight: bold;
 }
+
+
+#heat {
+  height: 100%;
+  width: 100%;
+}
+
+text {
+  font-weight: bold;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 100px;
+  height: 28px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: #008AB8;
+  border: 0px;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+  path:hover {
+    fill: #FFD900;
+  }
