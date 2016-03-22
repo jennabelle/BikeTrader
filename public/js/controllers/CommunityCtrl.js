@@ -12,6 +12,9 @@ angular.module('CommunityCtrl', [])
   $scope.comment = '';
  }
 
+ $scope.showTweets = function(){
+  
+ }
 
 }]);
 

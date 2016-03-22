@@ -18,6 +18,7 @@ var passportConfig = require('./config/passport.js');
 var jwt = require('express-jwt');
 // middleware for authenticating jwt tokens, use env variable to reference secret!
 var auth = jwt({ secret: 'SECRET', userProperty: 'payload' });
+var io = require('socket.io').listen(port);
 
 var port = process.env.PORT || 8080;
 
@@ -181,7 +182,5 @@ app.post('/login', function (req, res, next) {
 app.listen( port, function() {
   console.log( 'Server listening on port ' + port + '...\n' );
 });
-
-var io = require('socket.io').listen(port);
 
 module.exports = app;
